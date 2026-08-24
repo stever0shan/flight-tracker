@@ -1,0 +1,53 @@
+name: Flight price check
+
+on:
+  schedule:
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+    inputs:
+      force_email:
+        description: "Send an email even with no trigger"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: flight-price-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Check prices
+        env:
+          PROVIDER: ${{ vars.PROVIDER || 'serpapi' }}
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+          AMADEUS_ID: ${{ secrets.AMADEUS_ID }}
+          AMADEUS_SECRET: ${{ secrets.AMADEUS_SECRET }}
+          SMTP_HOST: ${{ vars.SMTP_HOST || 'smtp.gmail.com' }}
+          SMTP_PORT: ${{ vars.SMTP_PORT || '587' }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SMTP_FROM: ${{ secrets.SMTP_USER }}
+        run: |
+          python tracker.py ${{ inputs.force_email && '--force-email' || '' }}
+
+      - name: Commit price history
+        run: |
+          git config user.name  "flight-tracker"
+          git config user.email "actions@github.com"
+          git add price_history.json alert_state.json 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "prices $(date -u +%Y-%m-%d)"
+          git push

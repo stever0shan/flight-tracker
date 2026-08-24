@@ -1,0 +1,39 @@
+{
+  "recipients": ["ssurendrakum@binghamton.edu"],
+
+  "trip": {
+    "label": "Mom + brother — Kochi to New York",
+    "outbound_date": "2027-06-14",
+    "return_date": "2027-07-05",
+    "adults": 2,
+    "cabin": "economy",
+    "currency": "USD"
+  },
+
+  "routes": [
+    { "origin": "COK", "destination": "JFK", "label": "Kochi (primary)" },
+    { "origin": "BLR", "destination": "JFK", "label": "Bangalore (compare)" }
+  ],
+
+  "filters": {
+    "airlines": ["EK", "QR"],
+    "max_stops": 1,
+    "max_total_duration_hours": 28
+  },
+
+  "alerts": {
+    "baseline_total_usd": 2328.0,
+    "alert_below_total_usd": 2150.0,
+    "alert_on_pct_drop": 5.0,
+    "alert_on_new_low": true,
+    "alert_on_spike_pct": 12.0,
+    "weekly_digest_weekday": 6,
+    "min_hours_between_alerts": 20
+  },
+
+  "notes": [
+    "baseline_total_usd is the Aug 2026 quote of Rs 2.23 lakh for 2 passengers.",
+    "Target booking window is Dec 2026 - Feb 2027; the tracker nags once that opens.",
+    "Fare is refundable for $150/pp, so an early booking can still be rebooked on a drop."
+  ]
+}
