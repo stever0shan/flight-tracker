@@ -41,6 +41,7 @@ jobs:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           SMTP_FROM: ${{ secrets.SMTP_USER }}
+          RECIPIENTS: ${{ secrets.RECIPIENTS }}
         run: |
           python tracker.py ${{ inputs.force_email && '--force-email' || '' }}
 

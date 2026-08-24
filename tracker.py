@@ -349,6 +349,12 @@ def main():
     state = load_json(STATE_PATH, {})
     trip, filters, alerts = cfg["trip"], cfg["filters"], cfg["alerts"]
 
+    # Recipients come from the RECIPIENTS env var / secret so the repo can be
+    # public without exposing an address. Falls back to config for local use.
+    recipients = [e.strip() for e in os.environ.get("RECIPIENTS", "").split(",") if e.strip()]
+    if not recipients:
+        recipients = cfg.get("recipients", [])
+
     results, all_triggers = [], []
 
     for route in cfg["routes"]:
@@ -409,7 +415,9 @@ def main():
         if args.dry_run:
             print(f"\n[dry run] subject: {subject}\n[dry run] {len(html)} bytes of HTML")
         else:
-            send_email(subject, html, cfg["recipients"])
+            if not recipients:
+                raise RuntimeError("No recipients: set the RECIPIENTS secret")
+            send_email(subject, html, recipients)
             state["last_email_at"] = now_utc().isoformat()
             print(f"\nEmailed: {subject}")
     else:

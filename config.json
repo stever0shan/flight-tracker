@@ -1,8 +1,8 @@
 {
-  "recipients": ["ssurendrakum@binghamton.edu"],
+  "recipients": [],
 
   "trip": {
-    "label": "Mom + brother — Kochi to New York",
+    "label": "Kochi → New York, June 2027",
     "outbound_date": "2027-06-14",
     "return_date": "2027-07-05",
     "adults": 2,
@@ -32,8 +32,8 @@
   },
 
   "notes": [
-    "baseline_total_usd is the Aug 2026 quote of Rs 2.23 lakh for 2 passengers.",
-    "Target booking window is Dec 2026 - Feb 2027; the tracker nags once that opens.",
-    "Fare is refundable for $150/pp, so an early booking can still be rebooked on a drop."
+    "Set the RECIPIENTS secret to a comma-separated list of email addresses.",
+    "baseline_total_usd is a quoted fare for 2 passengers as of Aug 2026.",
+    "Target booking window is Dec 2026 - Feb 2027; the tracker flags once that opens."
   ]
 }

@@ -1,7 +1,7 @@
 # Flight price tracker — Kochi/Bangalore → New York, June 2027
 
-Checks fares daily, keeps a price history, and emails
-`ssurendrakum@binghamton.edu` when something worth acting on happens.
+Checks fares daily, keeps a price history, and emails you
+when something worth acting on happens.
 
 Runs free on GitHub Actions.
 
@@ -41,6 +41,7 @@ Repo → Settings → Secrets and variables → Actions:
 | `SERPAPI_KEY` | your SerpApi key |
 | `SMTP_USER` | sending address |
 | `SMTP_PASS` | app password |
+| `RECIPIENTS` | where alerts go (comma-separated) |
 
 ### 4. Test
 ```
