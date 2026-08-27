@@ -27,8 +27,9 @@
     "alert_on_pct_drop": 5.0,
     "alert_on_new_low": true,
     "alert_on_spike_pct": 12.0,
+    "digest_every_run": true,
     "weekly_digest_weekday": 6,
-    "min_hours_between_alerts": 20
+    "min_hours_between_alerts": 0
   },
 
   "notes": [

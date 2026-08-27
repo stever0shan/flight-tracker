@@ -246,7 +246,8 @@ def build_email(cfg, results, triggered, digest):
         tag = triggered[0][0]
         subject = f"[{tag}] {trip['label']} — ${results[0]['cheapest']['total_price']:,.0f}"
     else:
-        subject = f"[Weekly] {trip['label']} — ${results[0]['cheapest']['total_price']:,.0f}"
+        label = "Daily" if cfg["alerts"].get("digest_every_run") else "Weekly"
+        subject = f"[{label}] {trip['label']} — ${results[0]['cheapest']['total_price']:,.0f}"
 
     rows = []
     for r in results:
@@ -401,7 +402,8 @@ def main():
         print("No results; nothing to do.")
         return 1
 
-    is_digest_day = now_utc().weekday() == alerts.get("weekly_digest_weekday", 6)
+    is_digest_day = (alerts.get("digest_every_run", False)
+                     or now_utc().weekday() == alerts.get("weekly_digest_weekday", 6))
     last = state.get("last_email_at")
     cooled = True
     if last:
