@@ -158,5 +158,25 @@
     "airlines": [
       "EK"
     ]
+  },
+  {
+    "checked_at": "2026-09-01T12:16:58.206574+00:00",
+    "route": "COK-JFK",
+    "total_price": 2534.0,
+    "per_person": 1267.0,
+    "stops": 1,
+    "airlines": [
+      "EK"
+    ]
+  },
+  {
+    "checked_at": "2026-09-01T12:17:08.624717+00:00",
+    "route": "BLR-JFK",
+    "total_price": 2358.0,
+    "per_person": 1179.0,
+    "stops": 1,
+    "airlines": [
+      "EK"
+    ]
   }
 ]
