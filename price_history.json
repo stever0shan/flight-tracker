@@ -1418,5 +1418,15 @@
     "airlines": [
       "EK"
     ]
+  },
+  {
+    "checked_at": "2026-11-03T14:48:07.468522+00:00",
+    "route": "COK-JFK",
+    "total_price": 2536.0,
+    "per_person": 1268.0,
+    "stops": 1,
+    "airlines": [
+      "EK"
+    ]
   }
 ]
